@@ -1,25 +1,25 @@
 import { Model } from 'mongoose';
 
-type SubCategory = {
+export type SubCategory = {
   id: string;
   title: string;
 };
 
-type Category = {
+export type Category = {
   id: string;
   title: string;
   subCategory: SubCategory;
 };
 
-type Offer = {
+export type Offer = {
   buy1get1: boolean;
   free_delivery: boolean;
   percentage: number;
 };
 
-type ProductStatus = 'published' | 'unpublished';
+export type ProductStatus = 'published' | 'unpublished';
 
-type TProduct = {
+export type TProduct = {
   title: string;
   brand: string;
   price: number;
