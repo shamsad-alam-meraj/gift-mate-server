@@ -30,6 +30,7 @@ export type TProduct = {
   offer?: Offer;
   tax?: number;
   status: ProductStatus;
+  image?: string;
   ratings?: number;
   description?: string;
 };

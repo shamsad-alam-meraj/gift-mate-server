@@ -33,6 +33,7 @@ const ProductSchema = new Schema<TProduct>({
     enum: ['published', 'unpublished'],
     default: 'published',
   },
+  image: { type: String },
   ratings: { type: Number, min: 0, max: 5, required: true },
   description: { type: String, minlength: 50, required: true },
 });
