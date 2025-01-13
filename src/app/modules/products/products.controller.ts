@@ -38,6 +38,7 @@ export const ProductController = {
         search: String(search),
         sortBy: String(sortBy),
         order: String(order),
+        
       });
 
       return res.status(200).json({
@@ -47,6 +48,7 @@ export const ProductController = {
         order,
         search,
         success: true,
+        total: result.total,
         data: result.data,
       });
     } catch (error) {
