@@ -30,6 +30,8 @@ export type TProduct = {
   offer?: Offer;
   tax?: number;
   status: ProductStatus;
+  ratings?: number;
+  description?: string;
 };
 
 export type TProductModel = Model<TProduct>;

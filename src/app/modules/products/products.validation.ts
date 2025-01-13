@@ -43,6 +43,12 @@ export const createProductSchema = z.object({
       message: 'Status must be either "published" or "unpublished".',
     }),
   }),
+  ratings: z
+    .number()
+    .min(0, 'Ratings must be at least 0.')
+    .max(5, 'Ratings must be at most 100.')
+    .optional(),
+  description: z.string().min(0).optional(),
 });
 
 export const ProductSchemeValidation = createProductSchema.partial();
