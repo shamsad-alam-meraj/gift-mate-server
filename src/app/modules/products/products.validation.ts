@@ -45,5 +45,4 @@ export const createProductSchema = z.object({
   }),
 });
 
-// Validation for updating a product
 export const ProductSchemeValidation = createProductSchema.partial();

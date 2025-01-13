@@ -16,18 +16,45 @@ export const ProductController = {
       const product = await ProductService.createProduct(validation.data);
       return res.status(201).json({ product });
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error';
       return res.status(500).json({ error: errorMessage });
     }
   },
 
   async getProducts(req: Request, res: Response) {
+    const {
+      page = 1,
+      limit = 20,
+      search = '',
+      sortBy = 'createdAt',
+      order = 'asc',
+    } = req.query;
+
     try {
-      const products = await ProductService.getProducts();
-      return res.status(200).json({ products });
+      const result = await ProductService.getProducts({
+        page: Number(page),
+        limit: Number(limit),
+        search: String(search),
+        sortBy: String(sortBy),
+        order: String(order),
+      });
+
+      return res.status(200).json({
+        status: 200,
+        page: result.page,
+        limit: result.limit,
+        order,
+        search,
+        success: true,
+        data: result.data,
+      });
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      return res.status(500).json({ error: errorMessage });
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error';
+      return res
+        .status(500)
+        .json({ status: 500, success: false, error: errorMessage });
     }
   },
 
@@ -44,7 +71,8 @@ export const ProductController = {
       );
       return res.status(200).json({ product });
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error';
       return res.status(500).json({ error: errorMessage });
     }
   },
