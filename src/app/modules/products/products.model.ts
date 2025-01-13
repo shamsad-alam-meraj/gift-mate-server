@@ -1,6 +1,5 @@
 import { Schema, model } from 'mongoose';
 import { TProduct } from './products.interface';
-import { TProductModel } from './products.interface';
 
 const SubCategorySchema = new Schema({
   id: { type: String, required: true },
@@ -27,12 +26,13 @@ const ProductSchema = new Schema<TProduct>({
   inventory: { type: Number, required: true },
   category: { type: CategorySchema, required: true },
   have_offer: { type: Boolean, required: true },
-  offer: { type: OfferSchema, required: true },
-  tax: { type: Number, required: true },
-  status: { type: String, enum: ['published', 'unpublished'], required: true },
+  offer: { type: OfferSchema, required: false },
+  tax: { type: Number, required: false },
+  status: {
+    type: String,
+    enum: ['published', 'unpublished'],
+    default: 'published',
+  },
 });
 
-export const ProductModel = model<TProduct, TProductModel>(
-  'Product',
-  ProductSchema,
-);
+export const ProductModel = model<TProduct>('Product', ProductSchema);
