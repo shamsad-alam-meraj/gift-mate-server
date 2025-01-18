@@ -18,6 +18,14 @@ const OfferSchema = new Schema({
   percentage: { type: Number, required: true },
 });
 
+const CurrencySchema = new Schema({
+  native_symbol: { type: String, required: true }, // E.g., "₹", "$"
+  symbol: { type: String, required: true }, // E.g., "INR", "USD"
+  country: { type: String, required: true }, // E.g., "India", "USA"
+  name: { type: String, required: true }, // E.g., "Indian Rupee", "US Dollar"
+  short_name: { type: String, required: true }, // E.g., "Rupee", "Dollar"
+});
+
 const ProductSchema = new Schema<TProduct>({
   title: { type: String, required: true },
   brand: { type: String, required: true },
@@ -36,6 +44,10 @@ const ProductSchema = new Schema<TProduct>({
   image: { type: String },
   ratings: { type: Number, min: 0, max: 5, required: true },
   description: { type: String, minlength: 50, required: true },
+  relationship: { type: String },
+  budget: { type: String },
+  age: { type: String },
+  currency: { type: CurrencySchema, required: true }, // New field
 });
 
 export const ProductModel = model<TProduct>('Product', ProductSchema);

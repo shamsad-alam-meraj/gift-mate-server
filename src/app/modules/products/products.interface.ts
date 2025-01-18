@@ -17,6 +17,14 @@ export type Offer = {
   percentage?: number;
 };
 
+export type Currency = {
+  native_symbol: string; // E.g., "₹", "$"
+  symbol: string; // E.g., "INR", "USD"
+  country: string; // E.g., "India", "USA"
+  name: string; // E.g., "Indian Rupee", "US Dollar"
+  short_name: string; // E.g., "Rupee", "Dollar"
+};
+
 export type ProductStatus = 'published' | 'unpublished';
 
 export type TProduct = {
@@ -33,6 +41,10 @@ export type TProduct = {
   image?: string;
   ratings?: number;
   description?: string;
+  relationship?: string;
+  budget?: string;
+  age?: string;
+  currency: Currency;
 };
 
 export type TProductModel = Model<TProduct>;

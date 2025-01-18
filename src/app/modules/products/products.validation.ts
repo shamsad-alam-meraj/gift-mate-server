@@ -46,10 +46,20 @@ export const createProductSchema = z.object({
   ratings: z
     .number()
     .min(0, 'Ratings must be at least 0.')
-    .max(5, 'Ratings must be at most 100.')
+    .max(5, 'Ratings must be at most 5.')
     .optional(),
   description: z.string().optional(),
   image: z.string().optional(),
+  relationship: z.string().optional(),
+  budget: z.string().optional(),
+  age: z.string().optional(),
+  currency: z.object({
+    native_symbol: z.string().nonempty('Currency native symbol is required.'),
+    symbol: z.string().nonempty('Currency symbol is required.'),
+    country: z.string().nonempty('Currency country is required.'),
+    name: z.string().nonempty('Currency name is required.'),
+    short_name: z.string().nonempty('Currency short name is required.'),
+  }),
 });
 
 export const ProductSchemeValidation = createProductSchema.partial();
